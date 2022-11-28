@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxebx4sa4aoxd"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_ghvc3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dgny8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kcmjs"]
+
+[sub_resource type="Texture2D" id="Texture2D_sqe41"]
+resource_local_to_scene = false
+resource_name = ""
+
+[sub_resource type="Texture2D" id="Texture2D_fdbuw"]
+resource_local_to_scene = false
+resource_name = ""
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(589, 313)
+script = ExtResource("1_ghvc3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dgny8")
+debug_color = Color(0.729412, 0.0117647, 0.105882, 0.662745)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(1.36, 1.32)
+shape = SubResource("CircleShape2D_kcmjs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("Texture2D_sqe41")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -12.0
+offset_top = -10.0
+offset_right = 28.0
+offset_bottom = 30.0
+scale = Vector2(0.559997, 0.520001)
+texture = SubResource("Texture2D_fdbuw")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
